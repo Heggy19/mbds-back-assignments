@@ -28,7 +28,7 @@ function authenticate(req, res, next) {
             expiresIn: 86400 // expires in 24 hours
         });
 
-        res.status(200).send({ auth: true, token: token });
+        res.status(200).send({ id: user.id, name: user.name, auth: true, token: token });
     });
 }
 

@@ -36,9 +36,16 @@ router.post('/assignments', postAssignment);
 router.put('/assignments', updateAssignment);
 function getAssignments(req, res) {
   var aggregateQuery = Assignment.aggregate();
-  
+  let aggregate_options = [];
+  let search = !!(req.query.nom);
+  let match_regex = {$regex: req.query.nom, $options: 'i'};
+  if (search) {
+    console.log(req.query.nom);
+    aggregate_options.push({$match: {nom: req.query.nom}});
+  }
+  console.log(JSON.stringify(aggregate_options));
   Assignment.aggregatePaginate(
-    aggregateQuery,
+      aggregate_options,
     {
       page: parseInt(req.query.page) || 1,
       limit: parseInt(req.query.limit) || 10,
@@ -64,6 +71,7 @@ function getAssignment(req, res) {
   });
 }
 
+
 // Ajout d'un assignment (POST)
 function postAssignment(req, res) {
   let assignment = new Assignment();
@@ -71,6 +79,12 @@ function postAssignment(req, res) {
   assignment.nom = req.body.nom;
   assignment.dateDeRendu = req.body.dateDeRendu;
   assignment.rendu = req.body.rendu;
+  assignment.auteur = req.body.auteur;
+  assignment.matiere = req.body.matiere;
+  assignment.matiereimage = req.body.matiereimage;
+  assignment.image = req.body.image;
+  assignment.note = req.body.note;
+  assignment.remarques = req.body.remarques;
 
   console.log("POST assignment reçu :");
   console.log(assignment);

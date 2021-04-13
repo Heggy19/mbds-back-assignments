@@ -43,6 +43,5 @@ app.use(errorHandler);
 
 // start server
 const port = process.env.NODE_ENV === 'production' ? 80 : 4000;
-const server = app.listen(port, function () {
-    console.log('Server listening on port ' + port);
-});
+app.listen(port, "0.0.0.0");
+console.log('Server listening on port ' + port);

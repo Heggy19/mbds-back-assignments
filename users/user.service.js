@@ -1,7 +1,7 @@
 const config = require('config.json');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var User = require('../model/User');
+var User = require('../model/user');
 // users hardcoded for simplicity, store in a db for production applications
 const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
 

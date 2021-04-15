@@ -44,4 +44,4 @@ app.use(errorHandler);
 // start server
 const port = process.env.PORT || 4000;
 app.listen(port, "0.0.0.0");
-console.log('Server listening on port ' + port);
+console.log('Base url de l\'APi: http://localhost:4000');
